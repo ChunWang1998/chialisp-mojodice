@@ -1,15 +1,9 @@
 (mod (
-
         TARGET_AMOUNT
         CASH_OUT_PUZZLE_HASH
-        PROBABILITY;40
-        GAME_LIMIT;10000000
         my_amount
         new_amount
         my_puzzlehash
-        withdraw_amount ;40
-        vault_after_withdraw_amount ;60
-        vault_after_deposit_amount ;140
      )
 
      (include condition_codes.clib)
