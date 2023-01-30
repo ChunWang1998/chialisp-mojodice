@@ -24,6 +24,16 @@
       )
      )
 
+    (defun-inline withdraw (CASH_OUT_PUZZLE_HASH my_amount withdraw_amount vault_after_withdraw_amount my_puzzlehash)
+      (list
+        (list CREATE_COIN CASH_OUT_PUZZLE_HASH withdraw_amount)
+        (list CREATE_COIN my_puzzlehash vault_after_withdraw_amount)
+        (list ASSERT_MY_AMOUNT my_amount)
+        (list ASSERT_MY_PUZZLEHASH my_puzzlehash)
+        (list CREATE_COIN_ANNOUNCEMENT vault_after_withdraw_amount);???
+      )
+    )
+
      (defun-inline recreate_self (my_amount new_amount my_puzzlehash)
       (list
         (list CREATE_COIN my_puzzlehash new_amount)
@@ -32,6 +42,15 @@
         (list CREATE_COIN_ANNOUNCEMENT new_amount)
       )
      )
+
+    (defun-inline deposit (my_amount vault_after_deposit_amount my_puzzlehash)
+      (list
+        (list CREATE_COIN my_puzzlehash vault_after_deposit_amount)
+        (list ASSERT_MY_AMOUNT my_amount)
+        (list ASSERT_MY_PUZZLEHASH my_puzzlehash)
+        (list CREATE_COIN_ANNOUNCEMENT vault_after_deposit_amount)
+      )
+    )
 
      ; main
      (if (> new_amount my_amount)
