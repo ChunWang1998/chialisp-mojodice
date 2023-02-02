@@ -5,11 +5,11 @@ from chia.util.hash import std_hash
 from clvm.casts import int_to_bytes
 
 SK = PrivateKey.from_bytes(bytes.fromhex(
-    "0d12b2310d40f604d57b21bd74da5a907821291f5fe6ca0be01e26c6d2d3a52b"))
+    "3f1041e1a794d6cad188c9e61c90e53bab39aaec18eedd3c77cfc97fe5aa361a"))
 # piggybank coin id
 COIN_ID = bytes.fromhex(
-    "e283591608b63d2a8381a5caeecd510e4a6a3267a4e136d7759a18553307629e")
-NEW_AMOUNT = int_to_bytes(1000)
+    "197b53fd936b7f25283fd3127d77914aad5b55f16b6a3fb0e3b0cdf7ff3fbf60")
+NEW_AMOUNT = int_to_bytes(900)
 
 signature = AugSchemeMPL.sign(SK, std_hash(COIN_ID + NEW_AMOUNT))
 

@@ -4,7 +4,8 @@
 
 # Example
 
-receiver: 0xeeda2dceabc6e970d30d2990177a9317d0301597c6ed552217d83aa07e1af107
+receiver: 0x574cfa983d0e24354484db66a68a2e5e11711bf74192056a256eeee09576c968
+
 存錢罐(created after curry treehash): b9a3a2f9b33d71c9775fb9600a10f7ea39fab91962d09a7302c7bb6c7ab1bbe5
 標準地址:txch1hx3697dn84cuja6lh9sq5y8hagul4wgevtgf5uczc7akc743h0jsszcwpk
 錢包public key:0xb6d62517192be93313f6191249af1b139445b4842fa4c7930b9f3fe824661500db594ab76eb9c8ed8caef3ed0f0f59a5
@@ -49,36 +50,36 @@ receiver: 0xeeda2dceabc6e970d30d2990177a9317d0301597c6ed552217d83aa07e1af107
 
 # mojodice
 
-vault: 2eb81c4a4ad015fa2138e6a0b33a860d72e3f3ef5432fe86616de96281a02a37 (txch196upcjj26q2l5gfcu6stxw5xp4ew8ul02se0apnpdh5k9qdq9gmswclytr)
-劃分的coin:e92932f02e9fbb6107074052f5757f7f69c27bd18ddd1a8bdc51ad770c7f7719
-(txch1ay5n9upwn7akzpc8gpf02atl0a5uy7733hw34z7u2xkhwrrlwuvsqngtnr)
+vault: 6a0326da0282f6d521f2f80d9b96c120fd5fd1bd7a20d49c75bf7490e07e345d (txch1dgpjdkszstmd2g0jlqxeh9kpyr74l5da0gsdf8r4ha6fpcr7x3wsngp6pr)
+劃分的coin:b40dcf127f4cfaf7f922ff53d49a08ffbf003e276fb1936fb1fc2fa95674b909
+(txch1ksxu7ynlfna007fzlafafxsgl7lsq038d7cexma3lsh6j4n5hyysv4f07g)
 ## create puzzle hash, set target amount
     cdv clsp build piggybank/piggybank.clsp
-    cdv clsp curry piggybank/piggybank.clsp.hex -a 2300 -a 0xeeda2dceabc6e970d30d2990177a9317d0301597c6ed552217d83aa07e1af107 -a 40 -a 10000000  --treehash
-    cdv encode 2eb81c4a4ad015fa2138e6a0b33a860d72e3f3ef5432fe86616de96281a02a37 --prefix txch
+    cdv clsp curry piggybank/piggybank.clsp.hex -a 1200 -a 0x574cfa983d0e24354484db66a68a2e5e11711bf74192056a256eeee09576c968 -a 40 -a 10000000  --treehash
+    cdv encode 6a0326da0282f6d521f2f80d9b96c120fd5fd1bd7a20d49c75bf7490e07e345d --prefix txch
     送錢給標準地址
 
 ## contributions spend (從自己的錢包分出一部分的錢 拿來存)
     cdv clsp build piggybank/contribution.clsp
-    cdv clsp curry piggybank/contribution.clsp.hex -a 0xb6d62517192be93313f6191249af1b139445b4842fa4c7930b9f3fe824661500db594ab76eb9c8ed8caef3ed0f0f59a5 --treehash
-    cdv encode e92932f02e9fbb6107074052f5757f7f69c27bd18ddd1a8bdc51ad770c7f7719 --prefix txch
+    cdv clsp curry piggybank/contribution.clsp.hex -a 0xb94a99bd56f43b5d4ab1a3eae5919ed29d897fdc662ba0cab8013a5a9d05d31ccd56c9b24bbd7cf9509f98c88ada438d --treehash
+    cdv encode b40dcf127f4cfaf7f922ff53d49a08ffbf003e276fb1936fb1fc2fa95674b909 --prefix txch
    送錢給標準地址
 
 ## set spend bundle json
   
 ### coin1
-    cdv rpc coinrecords --by puzhash 2eb81c4a4ad015fa2138e6a0b33a860d72e3f3ef5432fe86616de96281a02a37 -nd
+    cdv rpc coinrecords --by puzhash 6a0326da0282f6d521f2f80d9b96c120fd5fd1bd7a20d49c75bf7490e07e345d -nd
     puzzle_reveal:
-    cdv clsp curry piggybank/piggybank.clsp.hex -a 2300 -a 0xeeda2dceabc6e970d30d2990177a9317d0301597c6ed552217d83aa07e1af107 -a 40 -a 10000000  -x
+    cdv clsp curry piggybank/piggybank.clsp.hex -a 1100 -a 0x574cfa983d0e24354484db66a68a2e5e11711bf74192056a256eeee09576c968 -a 40 -a 10000000  -x
     solution:
-       opc '(500 900 0x2eb81c4a4ad015fa2138e6a0b33a860d72e3f3ef5432fe86616de96281a02a37 40 60 140)'
+       opc '(46 500 900 0x6a0326da0282f6d521f2f80d9b96c120fd5fd1bd7a20d49c75bf7490e07e345d 40 90 130)'
 
 ### coin2
-    cdv rpc coinrecords --by puzhash e92932f02e9fbb6107074052f5757f7f69c27bd18ddd1a8bdc51ad770c7f7719 -nd
+    cdv rpc coinrecords --by puzhash b40dcf127f4cfaf7f922ff53d49a08ffbf003e276fb1936fb1fc2fa95674b909 -nd
       puzzle_reveal:
-    cdv clsp curry piggybank/contribution.clsp.hex -a 0xb6d62517192be93313f6191249af1b139445b4842fa4c7930b9f3fe824661500db594ab76eb9c8ed8caef3ed0f0f59a5 -x
+    cdv clsp curry piggybank/contribution.clsp.hex -a 0xb94a99bd56f43b5d4ab1a3eae5919ed29d897fdc662ba0cab8013a5a9d05d31ccd56c9b24bbd7cf9509f98c88ada438d -x
       solution:(piggybank token / new amount)
-      opc '(0xdce4cde31dbe81939bf79a3b7cece965d7b50956d2822821f60496ebb5046567 900)'
+      opc '(0x197b53fd936b7f25283fd3127d77914aad5b55f16b6a3fb0e3b0cdf7ff3fbf60 900)'
 
 ### aggregated_signature
     python3 piggybank/sign_contribution.py
@@ -86,13 +87,26 @@ vault: 2eb81c4a4ad015fa2138e6a0b33a860d72e3f3ef5432fe86616de96281a02a37 (txch196
 ## send tx 
     cdv rpc pushtx spend_bundle.json 
 
+## check
+### withdraw
+1. receiver receive withdraw_amount
+   cdv rpc coinrecords --by puzhash 574cfa983d0e24354484db66a68a2e5e11711bf74192056a256eeee09576c968
+   has a coin with "spent_block_index": 0 / amount: withdraw_amount
+2. vault remain vault_after_withdraw_amount
+   cdv rpc coinrecords --by puzhash 6a0326da0282f6d521f2f80d9b96c120fd5fd1bd7a20d49c75bf7490e07e345d
+   has a coin with "spent_block_index": 0 / amount: vault_after_withdraw_amount
+
 # other 
  ->(ERROR)One or more of the specified objects was not a spend bundle: bytes object is expected to start with 0x
  ->refer: https://docs.chia.net/guides/chialisp-first-smart-coin/ to add 0x
  -> -m 0.000006 --override 
+ -> spent_block_index has value: means "spent true"
 
 test:
 - input: curry (o)
 - input: multi input (o)
 - contract: function without using (o)
-- contract: main func
+- contract: main func (o)
+- test withdraw: vault:100 user send: 40 withdraw_amount: 40 vault_after_withdraw_amount:100 (o)
+- test withdraw: vault:100 user send: 30 withdraw_amount: 40 vault_after_withdraw_amount:90 (o)
+- test deposit: vault:100 user send:40 vault_after_deposit_amount:140 
