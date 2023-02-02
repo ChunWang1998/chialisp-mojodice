@@ -110,3 +110,4 @@ test:
 - test withdraw: vault:100 user send: 40 withdraw_amount: 40 vault_after_withdraw_amount:100 (o)
 - test withdraw: vault:100 user send: 30 withdraw_amount: 40 vault_after_withdraw_amount:90 (o)
 - test deposit: vault:100 user send:40 vault_after_deposit_amount:140 
+- success_number : hash by user name / secret key (o)
