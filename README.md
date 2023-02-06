@@ -106,6 +106,17 @@ cdv test
  -> -m 0.000006 --override 
  -> spent_block_index has value: means "spent true"
 
+# note
+1. setup要用 pytest_asyncio, 不然會cannot unpack non-iterable async_generator object
+2. 不能用.as_coin(), 要用.coin
+3. 主要是合約問題！ 
+CREATE_COIN_ANNOUNCEMENT 拿掉會fail
+main 可以直接給() 一定會過
+4. test code:
+contribution_spend拿掉會MINTING_COIN fail
+contribution_spend amt 可以拿掉 ,args不能拿掉
+
+
 TODO:
 - input: curry (o)
 - input: multi input (o)
@@ -116,6 +127,6 @@ TODO:
 - test deposit: vault:100 user send:40 vault_after_deposit_amount:140 
 - success_number : hash by user name / secret key (o)
 - delete all comment (o)
-- drivers code
+- drivers code ()
 - test code
 - recover deleted comment
