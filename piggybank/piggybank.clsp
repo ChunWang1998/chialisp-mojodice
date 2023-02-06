@@ -1,8 +1,8 @@
 (mod (
         CASH_OUT_PUZZLE_HASH
-        PROBABILITY;40
-        GAME_LIMIT;10000000
-        success_number;46
+        PROBABILITY ;40
+        GAME_LIMIT ;10000000
+        success_number ;46
         my_amount
         my_puzzlehash
         withdraw_amount ;40
