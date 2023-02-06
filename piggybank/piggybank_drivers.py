@@ -12,14 +12,13 @@ from cdv.util.load_clvm import load_clvm
 PIGGYBANK_MOD = load_clvm("piggybank.clsp","piggybank")
 
 # Create a piggybank
-def create_piggybank_puzzle(amount, cash_out_puzhash):
-    return PIGGYBANK_MOD.curry(amount, cash_out_puzhash)#TARGET_AMOUNT CASH_OUT_PUZZLE_HASH
+def create_piggybank_puzzle( cash_out_puzhash,probability:uint64, game_limit:uint64):
+    return PIGGYBANK_MOD.curry( cash_out_puzhash,probability, game_limit)
 
 # Generate a solution to contribute to a piggybank
-def solution_for_piggybank(pb_coin, contribution_amount):
-    #Program.to: 執行程式
-    return Program.to([pb_coin.amount, (pb_coin.amount + contribution_amount), pb_coin.puzzle_hash])
+def solution_for_piggybank(success_number, pb_coin, withdraw_amount,vault_after_withdraw_amount,vault_after_deposit_amount):
+    return Program.to([success_number, pb_coin.amount, pb_coin.puzzle_hash, withdraw_amount,vault_after_withdraw_amount,vault_after_deposit_amount])
 
 # Return the condition to assert the announcement
-def piggybank_announcement_assertion(pb_coin, contribution_amount):
+def piggybank_announcement_assertion(pb_coin, contribution_amount):#for CREATE_COIN_ANNOUNCEMENT
     return [ConditionOpcode.ASSERT_COIN_ANNOUNCEMENT, std_hash(pb_coin.name() + int_to_bytes((pb_coin.amount + contribution_amount)))]
