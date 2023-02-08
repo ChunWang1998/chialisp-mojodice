@@ -14,7 +14,7 @@
         (list CREATE_COIN my_puzzlehash 0);新的存錢罐清空
         ; (list ASSERT_MY_AMOUNT my_amount)
         ; (list ASSERT_MY_PUZZLEHASH my_puzzlehash)
-        (list CREATE_COIN_ANNOUNCEMENT new_amount)
+        (list CREATE_COIN_ANNOUNCEMENT new_amount);少的要和多的一樣
       )
      )
 
