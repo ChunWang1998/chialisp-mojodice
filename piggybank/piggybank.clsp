@@ -1,8 +1,8 @@
 (mod (
         CASH_OUT_PUZZLE_HASH
-        PROBABILITY ;40
-        GAME_LIMIT ;10000000
-        success_number ;46
+        PROBABILITY ;50
+        GAME_LIMIT ;100
+        success_number ;46 
         my_amount
         my_puzzlehash
         withdraw_amount ;40
@@ -16,17 +16,17 @@
       (list
         (list CREATE_COIN CASH_OUT_PUZZLE_HASH withdraw_amount)
         (list CREATE_COIN my_puzzlehash vault_after_withdraw_amount)
-        ; (list ASSERT_MY_AMOUNT my_amount)
-        ; (list ASSERT_MY_PUZZLEHASH my_puzzlehash)
-        (list CREATE_COIN_ANNOUNCEMENT vault_after_withdraw_amount);???
+        (list ASSERT_MY_AMOUNT my_amount)
+        (list ASSERT_MY_PUZZLEHASH my_puzzlehash)
+        (list CREATE_COIN_ANNOUNCEMENT vault_after_withdraw_amount)
       )
     )
 
     (defun-inline deposit (my_amount vault_after_deposit_amount my_puzzlehash)
       (list
         (list CREATE_COIN my_puzzlehash vault_after_deposit_amount)
-        ; (list ASSERT_MY_AMOUNT my_amount)
-        ; (list ASSERT_MY_PUZZLEHASH my_puzzlehash)
+        (list ASSERT_MY_AMOUNT my_amount)
+        (list ASSERT_MY_PUZZLEHASH my_puzzlehash)
         (list CREATE_COIN_ANNOUNCEMENT vault_after_deposit_amount)
       )
     )
